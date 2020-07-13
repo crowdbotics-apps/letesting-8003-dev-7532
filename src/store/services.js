@@ -1,4 +1,8 @@
 import axios from "axios"
+const openplugin = axios.create({
+  baseURL: "https://api.spotify.com/v1",
+  headers: { Accept: "application/json", "Content-Type": "application/json" }
+})
 const publicplugin = axios.create({
   baseURL: "https://api.spotify.com/v1",
   headers: { Accept: "application/json", "Content-Type": "application/json" }
@@ -7,6 +11,9 @@ const lETesting8003API = axios.create({
   baseURL: "https://letesting-8003-dev-7532.herokuapp.com/",
   headers: { Accept: "application/json", "Content-Type": "application/json" }
 })
+function get_albums_read({ ids, market }) {
+  return openplugin.get(`/albums`, { params: { ids: ids, market: market } })
+}
 function get_albums_read({ market, ids }) {
   return publicplugin.get(`/albums`, { params: { market: market, ids: ids } })
 }
@@ -80,6 +87,7 @@ function rest_auth_user_partial_update(requestBody) {
   return lETesting8003API.patch(`/rest-auth/user/`, requestBody)
 }
 export const apiService = {
+  get_albums_read,
   get_albums_read,
   api_v1_customtext_list,
   api_v1_customtext_read,

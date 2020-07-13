@@ -7,6 +7,9 @@ export default function apiReducer(state = initialState, action) {
     case types.GET_ALBUMS_READ:
     case types.GET_ALBUMS_READ_SUCCEEDED:
     case types.GET_ALBUMS_READ_FAILED:
+    case types.GET_ALBUMS_READ:
+    case types.GET_ALBUMS_READ_SUCCEEDED:
+    case types.GET_ALBUMS_READ_FAILED:
     case types.API_V1_CUSTOMTEXT_LIST:
     case types.API_V1_CUSTOMTEXT_LIST_SUCCEEDED:
     case types.API_V1_CUSTOMTEXT_LIST_FAILED:

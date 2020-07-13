@@ -12,6 +12,17 @@ function* get_albums_readWorker(action) {
 function* get_albums_readWatcher() {
   yield takeEvery(types.GET_ALBUMS_READ, get_albums_readWorker)
 }
+function* get_albums_readWorker(action) {
+  try {
+    const result = yield call(apiService.get_albums_read, action)
+    yield put(actions.get_albums_readSucceeded(result))
+  } catch (err) {
+    yield put(actions.get_albums_readFailed(err))
+  }
+}
+function* get_albums_readWatcher() {
+  yield takeEvery(types.GET_ALBUMS_READ, get_albums_readWorker)
+}
 function* api_v1_customtext_listWorker(action) {
   try {
     const result = yield call(apiService.api_v1_customtext_list, action)
@@ -289,6 +300,7 @@ function* rest_auth_user_partial_updateWatcher() {
 }
 export default function* rootSaga() {
   const sagas = [
+    get_albums_readWatcher,
     get_albums_readWatcher,
     api_v1_customtext_listWatcher,
     api_v1_customtext_readWatcher,
